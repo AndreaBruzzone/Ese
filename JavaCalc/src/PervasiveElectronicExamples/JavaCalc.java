@@ -6,6 +6,7 @@ public class JavaCalc {
 
 	public static void main(String[] args) {
 
+<<<<<<< HEAD
 		try (Scanner scanner = new Scanner(System.in)) {
 			System.out.println("Enter an expression of the form 3 * 5:");
 			double n1 = scanner.nextDouble();
@@ -28,6 +29,27 @@ public class JavaCalc {
 			default:
 				break;
 			}
+=======
+		switch (op) {
+		case "+":
+			System.out.println("Result = " + (n1 + n2));
+			break;
+		case "-":
+			System.out.println("Result = " + (n1 - n2));
+			break;
+		case "/":
+			System.out.println("Result = " + (n1 / n2));
+			break;
+		case "*":
+			System.out.println("Result = " + (n1 * n2));
+			break;
+		case "^":
+			System.out.println("Result = " + Math.pow(n1,n2));
+			break;
+		default:
+			System.out.println("No Operation");
+			break;
+>>>>>>> refs/heads/expOp
 		}
 	}
 
