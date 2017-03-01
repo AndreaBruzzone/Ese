@@ -1,0 +1,2 @@
+# JavaCalc
+Simple java calculator
