@@ -28,6 +28,7 @@ public class JavaCalc {
 				System.out.println("Result = " + Math.pow(n1, n2));
 				break;
 			default:
+				System.out.println("No Operation!");
 				break;
 			}
 		}
