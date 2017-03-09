@@ -2,54 +2,80 @@ package Pervasive.Sample;
 
 public class Money implements IMoney {
 
-	private int iAmount;
-	private String sCurrency;
+	private int fAmount;
+	private String fCurrency;
 
+	/**
+	 * Constructs a money from the given amount and currency.
+	 */
 	public Money(int amount, String currency) {
-		iAmount = amount;
-		sCurrency = currency;
+		fAmount = amount;
+		fCurrency = currency;
+	}
+
+	/**
+	 * Adds a money to this money. Forwards the request to the addMoney helper.
+	 */
+	public IMoney add(IMoney m) {
+		return m.addMoney(this);
+	}
+
+	public IMoney addMoney(Money m) {
+		if (m.currency().equals(currency()))
+			return new Money(amount() + m.amount(), currency());
+		return MoneyBag.create(this, m);
+	}
+
+	public IMoney addMoneyBag(MoneyBag s) {
+		return s.addMoney(this);
 	}
 
 	public int amount() {
-		return iAmount;
+		return fAmount;
 	}
 
 	public String currency() {
-		return sCurrency;
+		return fCurrency;
 	}
 
-	/*public Money add(Money m) {
-		if(m.currency().equals(currency()))
-			return new Money(amount() + m.amount(), currency());
-		return new MoneyBag(this, m);		
-	}*/
-	
-	public boolean equals (Object anObject)
-	{
-		if(anObject instanceof Money)
-		{
-			Money aMoney = (Money)anObject;
+	public boolean equals(Object anObject) {
+		if (isZero())
+			if (anObject instanceof IMoney)
+				return ((IMoney) anObject).isZero();
+		if (anObject instanceof Money) {
+			Money aMoney = (Money) anObject;
 			return aMoney.currency().equals(currency()) && amount() == aMoney.amount();
 		}
 		return false;
 	}
 
-	@Override
-	public IMoney add(IMoney m) {	
-		return m.addMoney(this);
+	public int hashCode() {
+		return fCurrency.hashCode() + fAmount;
 	}
 
-	@Override
-	public IMoney addMoneyBag(MoneyBag s) {
-		// TODO Auto-generated method stub
-		return s.addMoney(this);
+	public boolean isZero() {
+		return amount() == 0;
 	}
 
-	@Override
-	public IMoney addMoney(Money m) {
-		if(m.currency().equals(currency()))
-			return new Money(amount() + m.amount(), currency());
-		return new MoneyBag(this, m);
+	public IMoney multiply(int factor) {
+		return new Money(amount() * factor, currency());
+	}
 
+	public IMoney negate() {
+		return new Money(-amount(), currency());
+	}
+
+	public IMoney subtract(IMoney m) {
+		return add(m.negate());
+	}
+
+	public String toString() {
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("[" + amount() + " " + currency() + "]");
+		return buffer.toString();
+	}
+
+	public /* this makes no sense */ void appendTo(MoneyBag m) {
+		m.appendMoney(this);
 	}
 }

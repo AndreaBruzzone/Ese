@@ -23,8 +23,8 @@ public class MoneyTest {
 		m14CHF = new Money(14, "CHF");
 		m7USD = new Money(7, "USD");
 		m21USD = new Money(21, "USD");
-		MB1= new MoneyBag(m12CHF, m7USD);
-		MB2= new MoneyBag(m14CHF, m21USD);
+		MB1 = new MoneyBag(m12CHF, m7USD);
+		MB2 = new MoneyBag(m14CHF, m21USD);
 	}
 
 	@Test
@@ -39,11 +39,11 @@ public class MoneyTest {
 	public void testAdd() {
 		Money expected = new Money(26, "CHF");
 
-		Money result = m12CHF.add(m14CHF);
+		Money result = (Money) m12CHF.add(m14CHF);
 
 		assertTrue(expected.equals(result));
 	}
-	
+
 	@Test
 	public void testBagEquals() {
 		assertTrue(!MB1.equals(null));
@@ -52,10 +52,10 @@ public class MoneyTest {
 		assertTrue(!m12CHF.equals(MB1));
 		assertTrue(!MB1.equals(MB2));
 	}
-	
+
 	@Test
 	public void testMixedSimpleAdd() {
-		Money bag[] = {m12CHF, m7USD};
+		Money bag[] = { m12CHF, m7USD };
 		MoneyBag expected = new MoneyBag(bag);
 		assertEquals(expected, m12CHF.add(m7USD));
 	}
