@@ -17,7 +17,6 @@ INDEX VERSION 1.129+C:\Users\Andrea\git\Ese\.metadata\.plugins\org.eclipse.jdt.c
 194205294.index
 3314433690.index
 1199826107.index
-1685921279.index
 543038442.index
 843494433.index
 2997567257.index
